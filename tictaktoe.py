@@ -13,6 +13,7 @@ draw_object = "x"
 
 game = True
 
+game_won = False
 
 first_b = True
 second_b = True
@@ -39,6 +40,7 @@ def draw_rect(x, y, width, height, color):
 
 def check_win(player):
     # CHECK ROW WIN
+    row_counter = 0
     for row in res:
         for i in row:
             if i == player:
@@ -46,8 +48,14 @@ def check_win(player):
             else:
                 break
         else:
-            print(f"Player {player} win")
+            if row_counter == 0:
+                pygame.draw.line(field, white,(10,80),(490,80), 5)
+            elif row_counter == 1:
+                pygame.draw.line(field, white, (10,250), (490,250), 5)
+            else: 
+                pygame.draw.line(field, white, (10,420), (490,420),5)
             return True
+        row_counter += 1
 
     # CHECK COLUMN WIN
     for i in range(3):
