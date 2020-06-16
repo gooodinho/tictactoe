@@ -38,11 +38,21 @@ def draw_rect(x, y, width, height, color):
 
 
 def check_win(player):
-    # CHECK ROW
+    # CHECK ROW WIN
     for row in res:
-        # check = player
         for i in row:
             if i == player:
+                continue
+            else:
+                break
+        else:
+            print(f"Player {player} win")
+            return True
+
+    # CHECK COLUMN WIN
+    for i in range(3):
+        for column in res:
+            if column[i] == player:
                 continue
             else:
                 break
@@ -72,7 +82,6 @@ while game:
             game = False
         if event.type == pygame.MOUSEBUTTONUP:
             position = pygame.mouse.get_pos()
-            # print(position)
             if first.collidepoint(position) and first_b == True:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (10, 10), (150, 150), 5)
