@@ -24,6 +24,10 @@ seventh_b = True
 eighth_b = True
 ninth_b = True
 
+res = [[0, 0, 0],
+       [0, 0, 0],
+       [0, 0, 0]]
+
 
 def display_fill(color):
     pygame.display.get_surface().fill(color)
@@ -31,6 +35,20 @@ def display_fill(color):
 
 def draw_rect(x, y, width, height, color):
     pygame.draw.rect(field, color, (x, y, width, height))
+
+
+def check_win(player):
+    # CHECK ROW
+    for row in res:
+        # check = player
+        for i in row:
+            if i == player:
+                continue
+            else:
+                break
+        else:
+            print(f"Player {player} win")
+            return True
 
 
 display_fill(white)
@@ -59,83 +77,102 @@ while game:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (10, 10), (150, 150), 5)
                     pygame.draw.line(field, red, (10, 150), (150, 10), 5)
+                    res[0][0] = 1
                     draw_object = 'o'
                 else:
                     pygame.draw.circle(field, green, (80, 80), 75, 5)
                     draw_object = 'x'
+                    res[0][0] = 2
                 first_b = False
             if second.collidepoint(position) and second_b == True:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (180, 10), (320, 150), 5)
                     pygame.draw.line(field, red, (180, 150), (320, 10), 5)
                     draw_object = 'o'
+                    res[0][1] = 1
                 else:
                     pygame.draw.circle(field, green, (250, 80), 75, 5)
                     draw_object = 'x'
+                    res[0][1] = 2
                 second_b = False
             if third.collidepoint(position) and third_b == True:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (350, 10), (490, 150), 5)
                     pygame.draw.line(field, red, (350, 150), (490, 10), 5)
                     draw_object = 'o'
+                    res[0][2] = 1
                 else:
                     pygame.draw.circle(field, green, (420, 80), 75, 5)
                     draw_object = 'x'
+                    res[0][2] = 2
                 third_b = False
             if fourth.collidepoint(position) and fourth_b == True:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (10, 180), (150, 320), 5)
                     pygame.draw.line(field, red, (10, 320), (150, 180), 5)
                     draw_object = 'o'
+                    res[1][0] = 1
                 else:
                     pygame.draw.circle(field, green, (80, 250), 75, 5)
                     draw_object = 'x'
+                    res[1][0] = 2
                 fourth_b = False
             if fifth.collidepoint(position) and fifth_b == True:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (180, 180), (320, 320), 5)
                     pygame.draw.line(field, red, (180, 320), (320, 180), 5)
                     draw_object = 'o'
+                    res[1][1] = 1
                 else:
                     pygame.draw.circle(field, green, (250, 250), 75, 5)
                     draw_object = 'x'
+                    res[1][1] = 2
                 fifth_b = False
             if sixth.collidepoint(position) and sixth_b == True:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (350, 180), (490, 320), 5)
                     pygame.draw.line(field, red, (350, 320), (490, 180), 5)
                     draw_object = 'o'
+                    res[1][2] = 1
                 else:
                     pygame.draw.circle(field, green, (420, 250), 75, 5)
                     draw_object = 'x'
+                    res[1][2] = 2
                 sixth_b = False
             if seventh.collidepoint(position) and seventh_b == True:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (10, 350), (150, 490), 5)
                     pygame.draw.line(field, red, (10, 490), (150, 350), 5)
                     draw_object = 'o'
+                    res[2][0] = 1
                 else:
                     pygame.draw.circle(field, green, (80, 420), 75, 5)
                     draw_object = 'x'
+                    res[2][0] = 2
                 seventh_b = False
             if eighth.collidepoint(position) and eighth_b == True:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (180, 350), (320, 490), 5)
                     pygame.draw.line(field, red, (180, 490), (320, 350), 5)
                     draw_object = 'o'
+                    res[2][1] = 1
                 else:
                     pygame.draw.circle(field, green, (250, 420), 75, 5)
                     draw_object = 'x'
+                    res[2][1] = 2
                 eighth_b = False
             if ninth.collidepoint(position) and ninth_b == True:
                 if draw_object == 'x':
                     pygame.draw.line(field, red, (350, 350), (490, 490), 5)
                     pygame.draw.line(field, red, (350, 490), (490, 350), 5)
                     draw_object = 'o'
+                    res[2][2] = 1
                 else:
                     pygame.draw.circle(field, green, (420, 420), 75, 5)
                     draw_object = 'x'
+                    res[2][2] = 2
                 ninth_b = False
     pygame.display.update()
-
+    check_win(1)
+    check_win(2)
 pygame.quit()
