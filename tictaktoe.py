@@ -60,6 +60,24 @@ def check_win(player):
             print(f"Player {player} win")
             return True
 
+    # CHECK DIAGONAL WIN
+    for i in range(3):
+        if res[i][i] == player:
+            continue
+        else:
+            break
+    else: 
+        print(f"Player {player} win")
+        return True
+
+    for i in range(3):
+        if res[i][2-i] == player:
+            continue
+        else:
+            break
+    else:
+        print(f"Player {player} win")
+        return True
 
 display_fill(white)
 
