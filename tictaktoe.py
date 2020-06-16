@@ -49,15 +49,16 @@ def check_win(player):
                 break
         else:
             if row_counter == 0:
-                pygame.draw.line(field, white,(10,80),(490,80), 5)
+                pygame.draw.line(field, white, (10, 80), (490, 80), 5)
             elif row_counter == 1:
-                pygame.draw.line(field, white, (10,250), (490,250), 5)
-            else: 
-                pygame.draw.line(field, white, (10,420), (490,420),5)
+                pygame.draw.line(field, white, (10, 250), (490, 250), 5)
+            else:
+                pygame.draw.line(field, white, (10, 420), (490, 420), 5)
             return True
         row_counter += 1
 
     # CHECK COLUMN WIN
+    column_counter = 0
     for i in range(3):
         for column in res:
             if column[i] == player:
@@ -65,16 +66,22 @@ def check_win(player):
             else:
                 break
         else:
-            print(f"Player {player} win")
+            if column_counter == 0:
+                pygame.draw.line(field, white, (80, 10), (80, 490), 5)
+            elif column_counter == 1:
+                pygame.draw.line(field, white, (250, 10), (250, 490), 5)
+            else:
+                pygame.draw.line(field, white, (420, 10), (420, 490), 5)
             return True
-
+        column_counter += 1
+        
     # CHECK DIAGONAL WIN
     for i in range(3):
         if res[i][i] == player:
             continue
         else:
             break
-    else: 
+    else:
         print(f"Player {player} win")
         return True
 
@@ -86,6 +93,7 @@ def check_win(player):
     else:
         print(f"Player {player} win")
         return True
+
 
 display_fill(white)
 
