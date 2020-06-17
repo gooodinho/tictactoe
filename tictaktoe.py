@@ -8,6 +8,7 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
 green = (0, 255, 0)
+yellow = (255, 225, 0)
 
 draw_object = "x"
 
@@ -49,11 +50,11 @@ def check_win(player):
                 break
         else:
             if row_counter == 0:
-                pygame.draw.line(field, white, (10, 80), (490, 80), 5)
+                pygame.draw.line(field, yellow, (10, 80), (490, 80), 10)
             elif row_counter == 1:
-                pygame.draw.line(field, white, (10, 250), (490, 250), 5)
+                pygame.draw.line(field, yellow, (10, 250), (490, 250), 10)
             else:
-                pygame.draw.line(field, white, (10, 420), (490, 420), 5)
+                pygame.draw.line(field, yellow, (10, 420), (490, 420), 10)
             return True
         row_counter += 1
 
@@ -67,11 +68,11 @@ def check_win(player):
                 break
         else:
             if column_counter == 0:
-                pygame.draw.line(field, white, (80, 10), (80, 490), 5)
+                pygame.draw.line(field, yellow, (80, 10), (80, 490), 10)
             elif column_counter == 1:
-                pygame.draw.line(field, white, (250, 10), (250, 490), 5)
+                pygame.draw.line(field, yellow, (250, 10), (250, 490), 10)
             else:
-                pygame.draw.line(field, white, (420, 10), (420, 490), 5)
+                pygame.draw.line(field, yellow, (420, 10), (420, 490), 10)
             return True
         column_counter += 1
         
@@ -82,7 +83,7 @@ def check_win(player):
         else:
             break
     else:
-        print(f"Player {player} win")
+        pygame.draw.line(field, yellow, (10,10), (490,490), 10)
         return True
 
     for i in range(3):
@@ -91,7 +92,7 @@ def check_win(player):
         else:
             break
     else:
-        print(f"Player {player} win")
+        pygame.draw.line(field, yellow, (10,490), (490,10), 10)
         return True
 
 
