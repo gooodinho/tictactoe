@@ -55,7 +55,7 @@ def check_win(player):
                 pygame.draw.line(field, yellow, (10, 250), (490, 250), 10)
             else:
                 pygame.draw.line(field, yellow, (10, 420), (490, 420), 10)
-            
+
             return True
         row_counter += 1
 
@@ -76,7 +76,7 @@ def check_win(player):
                 pygame.draw.line(field, yellow, (420, 10), (420, 490), 10)
             return True
         column_counter += 1
-        
+
     # CHECK DIAGONAL WIN
     for i in range(3):
         if res[i][i] == player:
@@ -84,7 +84,7 @@ def check_win(player):
         else:
             break
     else:
-        pygame.draw.line(field, yellow, (10,10), (490,490), 10)
+        pygame.draw.line(field, yellow, (10, 10), (490, 490), 10)
         return True
 
     for i in range(3):
@@ -93,7 +93,7 @@ def check_win(player):
         else:
             break
     else:
-        pygame.draw.line(field, yellow, (10,490), (490,10), 10)
+        pygame.draw.line(field, yellow, (10, 490), (490, 10), 10)
         return True
 
 
@@ -115,6 +115,39 @@ while game == True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_r:
+                first_b = True
+                second_b = True
+                third_b = True
+                fourth_b = True
+                fifth_b = True
+                sixth_b = True
+                seventh_b = True
+                eighth_b = True
+                ninth_b = True
+
+                res = [[0, 0, 0],
+                        [0, 0, 0],
+                        [0, 0, 0]]
+
+                draw_object = "x"
+
+                game_won = False                
+
+                display_fill(white)
+
+                first = pygame.draw.rect(field, black, (0, 0, 160, 160))
+                second = pygame.draw.rect(field, black, (170, 0, 160, 160))
+                third = pygame.draw.rect(field, black, (340, 0, 160, 160))
+                fourth = pygame.draw.rect(field, black, (0, 170, 160, 160))
+                fifth = pygame.draw.rect(field, black, (170, 170, 160, 160))
+                sixth = pygame.draw.rect(field, black, (340, 170, 160, 160))
+                seventh = pygame.draw.rect(field, black, (0, 340, 160, 160))
+                eighth = pygame.draw.rect(field, black, (170, 340, 160, 160))
+                ninth = pygame.draw.rect(field, black, (340, 340, 160, 160))
+            
+            pygame.display.update()
         if game_won != True:
             if event.type == pygame.MOUSEBUTTONUP:
                 position = pygame.mouse.get_pos()
@@ -218,6 +251,7 @@ while game == True:
                         res[2][2] = 2
                     ninth_b = False
     pygame.display.update()
+
     if check_win(1):
         game_won = True
     if check_win(2):
