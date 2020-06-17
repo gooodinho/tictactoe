@@ -10,11 +10,14 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 yellow = (255, 225, 0)
 
+font = pygame.font.SysFont("bahnschrift", 25)
+
 draw_object = "x"
 
 game = True
 
 game_won = False
+
 
 first_b = True
 second_b = True
@@ -39,7 +42,27 @@ def draw_rect(x, y, width, height, color):
     pygame.draw.rect(field, color, (x, y, width, height))
 
 
+def show_game_rules():
+    game_rules = True
+    while game_rules:
+        display_fill(white)
+        name = font.render("TicTakToe", True, black)
+        rules = font.render("2 Players - X and O", True, black)
+        start = font.render("ENTER - Start, 'R' to Restart ", True, black)
+        field.blit(name, [200, 100])
+        field.blit(rules, [140, 150])
+        field.blit(start, [100, 250])
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    game_rules = False
+
+
 def check_win(player):
+
     # CHECK ROW WIN
     row_counter = 0
     for row in res:
@@ -96,9 +119,11 @@ def check_win(player):
         pygame.draw.line(field, yellow, (10, 490), (490, 10), 10)
         return True
 
+# SHOW RULES WINDOW
+show_game_rules()
 
+# DRAW BOARD
 display_fill(white)
-
 first = pygame.draw.rect(field, black, (0, 0, 160, 160))
 second = pygame.draw.rect(field, black, (170, 0, 160, 160))
 third = pygame.draw.rect(field, black, (340, 0, 160, 160))
@@ -112,6 +137,7 @@ ninth = pygame.draw.rect(field, black, (340, 340, 160, 160))
 pygame.display.update()
 
 while game == True:
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
@@ -128,12 +154,12 @@ while game == True:
                 ninth_b = True
 
                 res = [[0, 0, 0],
-                        [0, 0, 0],
-                        [0, 0, 0]]
+                       [0, 0, 0],
+                       [0, 0, 0]]
 
                 draw_object = "x"
 
-                game_won = False                
+                game_won = False
 
                 display_fill(white)
 
@@ -146,7 +172,7 @@ while game == True:
                 seventh = pygame.draw.rect(field, black, (0, 340, 160, 160))
                 eighth = pygame.draw.rect(field, black, (170, 340, 160, 160))
                 ninth = pygame.draw.rect(field, black, (340, 340, 160, 160))
-            
+
             pygame.display.update()
         if game_won != True:
             if event.type == pygame.MOUSEBUTTONUP:
@@ -162,6 +188,7 @@ while game == True:
                         draw_object = 'x'
                         res[0][0] = 2
                     first_b = False
+
                 if second.collidepoint(position) and second_b == True:
                     if draw_object == 'x':
                         pygame.draw.line(field, red, (180, 10), (320, 150), 5)
@@ -173,6 +200,7 @@ while game == True:
                         draw_object = 'x'
                         res[0][1] = 2
                     second_b = False
+
                 if third.collidepoint(position) and third_b == True:
                     if draw_object == 'x':
                         pygame.draw.line(field, red, (350, 10), (490, 150), 5)
@@ -184,6 +212,7 @@ while game == True:
                         draw_object = 'x'
                         res[0][2] = 2
                     third_b = False
+
                 if fourth.collidepoint(position) and fourth_b == True:
                     if draw_object == 'x':
                         pygame.draw.line(field, red, (10, 180), (150, 320), 5)
@@ -195,6 +224,7 @@ while game == True:
                         draw_object = 'x'
                         res[1][0] = 2
                     fourth_b = False
+
                 if fifth.collidepoint(position) and fifth_b == True:
                     if draw_object == 'x':
                         pygame.draw.line(field, red, (180, 180), (320, 320), 5)
@@ -206,6 +236,7 @@ while game == True:
                         draw_object = 'x'
                         res[1][1] = 2
                     fifth_b = False
+
                 if sixth.collidepoint(position) and sixth_b == True:
                     if draw_object == 'x':
                         pygame.draw.line(field, red, (350, 180), (490, 320), 5)
@@ -217,6 +248,7 @@ while game == True:
                         draw_object = 'x'
                         res[1][2] = 2
                     sixth_b = False
+
                 if seventh.collidepoint(position) and seventh_b == True:
                     if draw_object == 'x':
                         pygame.draw.line(field, red, (10, 350), (150, 490), 5)
@@ -228,6 +260,7 @@ while game == True:
                         draw_object = 'x'
                         res[2][0] = 2
                     seventh_b = False
+
                 if eighth.collidepoint(position) and eighth_b == True:
                     if draw_object == 'x':
                         pygame.draw.line(field, red, (180, 350), (320, 490), 5)
@@ -239,6 +272,7 @@ while game == True:
                         draw_object = 'x'
                         res[2][1] = 2
                     eighth_b = False
+
                 if ninth.collidepoint(position) and ninth_b == True:
                     if draw_object == 'x':
                         pygame.draw.line(field, red, (350, 350), (490, 490), 5)
@@ -256,4 +290,5 @@ while game == True:
         game_won = True
     if check_win(2):
         game_won = True
+
 pygame.quit()
